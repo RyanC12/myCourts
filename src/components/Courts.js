@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Carousel } from 'react-responsive-carousel';
-import balcones from '/Users/rxc1bc4/Documents/personal-project/my-courts/src/images/Balcones.jpg';
+import balcones from '../images/balcones';
 import mule from '../images/mule.png';
 import northwest from '../images/northwest.png';
 import SelectedCourt from '../components/SelectedCourt';

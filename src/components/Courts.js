@@ -11,14 +11,36 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     courtContainer: {
-        width: '500px',
-        height: '500px',
+        width: '95%',
+        height: '100vh',
         display: 'flex',
         alignItems: 'center',
+        flexDirection: 'column',
+        padding: '0px 15px'
     },
-    section: {
-        width: '60%',
+
+    titles: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'space-between'
     },
+    courtInfoContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        height: '100vh',
+    },
+    courts: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+
+    },
+    thumbnail: {
+        width: '50px',
+        height: '50px'
+    }
 }));
 
 const images = [
@@ -43,26 +65,30 @@ const Courts = () => {
     const classes = useStyles();
 
     return (
-        <Container className={classes.courtContainer}>
-            <Carousel>
+        <div className={classes.courtContainer}>
+            <div className={classes.titles}>
+                    <h2>Name</h2>
+                    <h2>Address</h2>
+                    <h2>Preview</h2>
+            </div>
+            <div className={classes.courtInfoContainer}>
                 {
                     images.map((image, i) => {
-                        console.log({images})
                         return (
-                            <div key={i}>
-                                <img src={image.img} alt={image.name} />
+                            <div key={i} className={classes.courts}>
+                                <p className="legend"><b>{image.name}</b></p>
+                                <p>{image.address}</p>
                                 <SelectedCourt
                                 image={image}
                                 >
-                                <p className="legend">{image.name}</p>
                                 </SelectedCourt>
 
                             </div>
                         )
                     })
                 }
-            </Carousel>
-        </Container>
+            </div>    
+        </div>
     )
 }
 

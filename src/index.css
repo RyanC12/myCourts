@@ -20,13 +20,15 @@ code {
 }
 
 .left-half {
-  width: 100%;
+  width: 50%;
   height: 100vh;
+  border: 1px solid green;
 }
 
 .right-half {
-  width: 100%;
+  width: 50%;
   height: 100vh;
+  border: 1px solid purple;
 }
 
 .welcome-image {

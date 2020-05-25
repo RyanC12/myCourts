@@ -21,12 +21,21 @@ function getModalStyle() {
 const useStyles = makeStyles(theme => ({
     paper: {
         position: 'absolute',
-        width: 400,
+        width: 500,
+        height: 250,
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
     },
+    thumbnail: {
+        width: '50px',
+        height: '50px'
+    },
+    courtPreview: {
+        width: '100%',
+        height: '100%'
+    }
 }));
 
 const SelectedBusiness = ({ image }) => {
@@ -66,16 +75,14 @@ const SelectedBusiness = ({ image }) => {
     return (
         <div>
             <a href="#">
-                <p onClick={handleOpen}>{image.name}</p>
+                <img onClick={handleOpen} className={classes.thumbnail} src={image.img} alt={image.name} />
             </a>
             <Modal
                 open={isOpen}
                 onClose={handleClose}
             >
                 <div style={modalStyle} className={classes.paper}>
-                    <h1>{image.name}</h1>
-                    <h2>{image.address}</h2>
-                    {/* <Map lat={lat} lng={lng} /> */}
+                    <img onClick={handleOpen} className={classes.courtPreview} src={image.img} alt={image.name} />
                 </div>
             </Modal>
         </div>

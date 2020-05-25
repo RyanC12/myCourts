@@ -30,9 +30,13 @@ const AddCourt = ({ images, addCourt}) => {
     const [newBusinessAddress, setNewBusinessAddress] = useState('');
     const [newBusinessHours, setNewBusinessHours] = useState('');
     const [newBusinessDescription, setNewBusinessDescription] = useState('');
+    const [newCity, setNewCity] = useState('');
+    const [newZipcode, setNewZipcode] = useState('');
+    const [newImage, setNewImage] = useState();
     const [locations, setLocations] = useState([]);
     const [lat, setLat] = useState('');
     const [lng, setLng] = useState('');
+    console.log({locations})
 
     useEffect(
         () => {
@@ -57,24 +61,36 @@ const AddCourt = ({ images, addCourt}) => {
 
     const handleName = (e) => {
         setNewBusinessName(e.target.value)
-    }
+    };
     const handleAddress = (e) => {
         setNewBusinessAddress(e.target.value)
-    }
+    };
     const handleHours = (e) => {
         setNewBusinessHours(e.target.value)
-    }
+    };
     const handleDescription = (e) => {
         setNewBusinessDescription(e.target.value)
-    }
+    };
+    const handleCity = (e) => {
+        setNewCity(e.target.value)
+    };
+    const handleZipcode = (e) => {
+        setNewZipcode(e.target.value)
+    };
+    const handleImage = (e) => {
+        setNewImage(e.target.value)
+    };
     const handleSubmit = () => {
         let id = locations.length + 1;
         const location = [{
             id,
             newBusinessName,
             newBusinessAddress,
+            newCity,
+            newZipcode,
             newBusinessHours,
-            newBusinessDescription
+            newBusinessDescription,
+            newImage
         }]
         setLocations(location)
 
@@ -85,8 +101,11 @@ const AddCourt = ({ images, addCourt}) => {
             <form className={classes.formContainer} >
                 <TextField onChange={handleName} style={{ margin: '10px' }} id="standard-basic" label="Name" />
                 <TextField onBlur={handleAddress} style={{ margin: '10px' }} id="standard-basic" label="Address" />
+                <TextField onChange={handleCity} style={{ margin: '10px' }} id="standard-basic" label="city,st" />
+                <TextField onChange={handleZipcode} style={{ margin: '10px' }} id="standard-basic" label="zipcode" />
                 <TextField onChange={handleHours} style={{ margin: '10px' }} id="standard-basic" label="Hours" />
                 <TextField onChange={handleDescription} style={{ margin: '10px' }} id="standard-basic" label="Description" />
+                <TextField onChange={handleImage} type='file' style={{ margin: '10px' }} id="standard-basic" label="Court Image" />
                 <Button style={{ margin: '10px' }} onClick={handleSubmit} variant="contained">Save</Button>
             </form>
         </Container>

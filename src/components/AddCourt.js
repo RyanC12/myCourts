@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -18,12 +18,13 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         width: '50%',
         margin: 'auto',
-        padding: '20px'
+        padding: '20px',
+        border: '1px solid black'
     },
-    
+
 }));
 
-const AddCourt = ({ images, addCourt}) => {
+const AddCourt = ({ images, addCourt }) => {
     const classes = useStyles();
 
     const [newBusinessName, setNewBusinessName] = useState('');
@@ -36,7 +37,7 @@ const AddCourt = ({ images, addCourt}) => {
     const [locations, setLocations] = useState([]);
     const [lat, setLat] = useState('');
     const [lng, setLng] = useState('');
-    console.log({locations})
+    console.log({ locations })
 
     useEffect(
         () => {
@@ -50,7 +51,7 @@ const AddCourt = ({ images, addCourt}) => {
                     .then(response => {
                         setLat(response.data.results[0].geometry.location.lat || null)
                         setLng(response.data.results[0].geometry.location.lng || null)
-        
+
                     })
                     .catch(error => console.log(error))
             }
@@ -97,7 +98,8 @@ const AddCourt = ({ images, addCourt}) => {
     }
 
     return (
-        <Container className={classes.container} style={{display: 'flex'}} >
+        <Container className={classes.container} style={{ display: 'flex' }} >
+            <h1 style={{ textAlign: 'center' }}>Add Court</h1>
             <form className={classes.formContainer} >
                 <TextField onChange={handleName} style={{ margin: '10px' }} id="standard-basic" label="Name" />
                 <TextField onBlur={handleAddress} style={{ margin: '10px' }} id="standard-basic" label="Address" />

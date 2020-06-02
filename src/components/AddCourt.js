@@ -10,6 +10,7 @@ import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
     contianer: {
+        display: 'flex', 
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -20,6 +21,9 @@ const useStyles = makeStyles(theme => ({
         margin: 'auto',
         padding: '20px',
         border: '1px solid black'
+    },
+    addCourtTitle: {
+        textAlign: 'center',
     },
 
 }));
@@ -98,8 +102,8 @@ const AddCourt = ({ images, addCourt }) => {
     }
 
     return (
-        <Container className={classes.container} style={{ display: 'flex' }} >
-            <h1 style={{ textAlign: 'center' }}>Add Court</h1>
+        <Container className={classes.container} >
+            <h1 className={classes.addCourtTitle}>Add Court</h1>
             <form className={classes.formContainer} >
                 <TextField onChange={handleName} style={{ margin: '10px' }} id="standard-basic" label="Name" />
                 <TextField onBlur={handleAddress} style={{ margin: '10px' }} id="standard-basic" label="Address" />

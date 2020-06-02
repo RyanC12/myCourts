@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Geocode from "react-geocode";
+
 
 import axios from 'axios'
 
@@ -39,24 +41,36 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SelectedBusiness = ({ image }) => {
-    console.log({image})
     const classes = useStyles();
     // getModalStyle is not a pure function, we roll the style only on the first render
     const [modalStyle] = React.useState(getModalStyle);
-
+    
     const [isOpen, setIsOpen] = useState(false)
-    // const [lat, setLat] = useState();
-    // const [lng, setLng] = useState();
+    const [lat, setLat] = useState();
+    const [lng, setLng] = useState();
 
 
     const handleOpen = () => {
         setIsOpen(true);
+        getCoordinates();
     };
 
     const handleClose = () => {
         setIsOpen(false);
     };
 
+
+    const getCoordinates = () => {
+        Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAP_API_KEY);
+        Geocode.fromAddress("7000 Ardath St, Austin, TX 78757").then(
+            response => {
+            const {lat, lng} = response.results[0].geometry.location;
+            console.log(lat, lng);
+        },
+        error => {
+            console.log(error);
+        })
+    }
     // const geocode = () => {
     //     axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
     //         params: {

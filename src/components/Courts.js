@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { Carousel } from 'react-responsive-carousel';
 import balcones from '../images/Balcones.jpg';
 import mule from '../images/mule.png';
 import northwest from '../images/northwest.png';
@@ -60,6 +59,7 @@ const images = [
         "address": "7000 Ardath St, Austin, TX 78757",
     }
 ];
+
 
 const Courts = () => {
     const classes = useStyles();

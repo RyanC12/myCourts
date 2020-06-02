@@ -52,44 +52,44 @@ const SelectedBusiness = ({ image }) => {
 
     const handleOpen = () => {
         setIsOpen(true);
-        getCoordinates();
     };
 
     const handleClose = () => {
         setIsOpen(false);
     };
 
-
-    const getCoordinates = () => {
-        Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAP_API_KEY);
-        Geocode.fromAddress("7000 Ardath St, Austin, TX 78757").then(
-            response => {
-            const {lat, lng} = response.results[0].geometry.location;
-            console.log(lat, lng);
-        },
-        error => {
-            console.log(error);
+    const geocode = () => {
+        axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+            params: {
+                address: image.address,
+                key: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
+            }
         })
-    }
-    // const geocode = () => {
-    //     axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
-    //         params: {
-    //             address: image.address,
-    //             key: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
-    //         }
-    //     })
-    //         .then(response => {
-    //             setLat(response.data.results[0].geometry.location.lat || null)
-    //             setLng(response.data.results[0].geometry.location.lng || null)
+            .then(response => {
+                console.log({response})
+                setLat(response.data.results[0].geometry.location.lat || null)
+                setLng(response.data.results[0].geometry.location.lng || null)
+                console.log('hit the mapping')
 
-    //         })
-    //         .catch(error => console.log(error))
-    // }
-    // geocode()
+            })
+            .catch(error => console.log(error))
+    }
+    geocode()
+    console.log({lat})
+    console.log({lng})
+
     return (
         <div>
             <a href="#">
                 <img onClick={handleOpen} className={classes.thumbnail} src={image.img} alt={image.name} />
+                { lat && lng ? 
+                                    <Map 
+                                    lat={lat}
+                                    lng={lng} 
+                                    />
+                                    :
+                                    null
+                }
             </a>
             <Modal
                 open={isOpen}

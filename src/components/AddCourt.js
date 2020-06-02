@@ -2,17 +2,25 @@ import React, { useState, useEffect } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
 import { Button, Container } from '@material-ui/core/';
+
+import ButtonAppBar from './Nav'
 
 import Map from '../components/Map';
 
 import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
-    contianer: {
-        display: 'flex', 
+    root: {
+        backgroundColor: '#303132',
+        height: '100vh'
+    },
+    conatainer: {
+        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        padding: '0'
     },
     formContainer: {
         display: 'flex',
@@ -20,10 +28,13 @@ const useStyles = makeStyles(theme => ({
         width: '50%',
         margin: 'auto',
         padding: '20px',
-        border: '1px solid black'
+        border: '1px solid black',
+        borderRadius: '5px',
+        backgroundColor: '#edebeb'
     },
     addCourtTitle: {
         textAlign: 'center',
+        color: '#edebeb'
     },
 
 }));
@@ -64,6 +75,8 @@ const AddCourt = ({ images, addCourt }) => {
         [newBusinessAddress]
     )
 
+    // function for encoding images submitted by user
+
     const handleName = (e) => {
         setNewBusinessName(e.target.value)
     };
@@ -98,23 +111,25 @@ const AddCourt = ({ images, addCourt }) => {
             newImage
         }]
         setLocations(location)
-
     }
 
     return (
-        <Container className={classes.container} >
-            <h1 className={classes.addCourtTitle}>Add Court</h1>
-            <form className={classes.formContainer} >
-                <TextField onChange={handleName} style={{ margin: '10px' }} id="standard-basic" label="Name" />
-                <TextField onBlur={handleAddress} style={{ margin: '10px' }} id="standard-basic" label="Address" />
-                <TextField onChange={handleCity} style={{ margin: '10px' }} id="standard-basic" label="city,st" />
-                <TextField onChange={handleZipcode} style={{ margin: '10px' }} id="standard-basic" label="zipcode" />
-                <TextField onChange={handleHours} style={{ margin: '10px' }} id="standard-basic" label="Hours" />
-                <TextField onChange={handleDescription} style={{ margin: '10px' }} id="standard-basic" label="Description" />
-                <TextField onChange={handleImage} type='file' style={{ margin: '10px' }} id="standard-basic" label="Court Image" />
-                <Button style={{ margin: '10px' }} onClick={handleSubmit} variant="contained">Save</Button>
-            </form>
-        </Container>
+        <div className={classes.root}>
+            <ButtonAppBar />
+            <Container className={classes.container} >
+                <h1 className={classes.addCourtTitle}>Add Court</h1>
+                <form className={classes.formContainer} >
+                    <TextField onChange={handleName} style={{ margin: '10px' }} label="Name" />
+                    <TextField onBlur={handleAddress} style={{ margin: '10px' }} label="Address" />
+                    <TextField onChange={handleCity} style={{ margin: '10px' }} label="city,st" />
+                    <TextField onChange={handleZipcode} style={{ margin: '10px' }} label="zipcode" />
+                    <TextField onChange={handleHours} style={{ margin: '10px' }} label="Hours" />
+                    <TextField onChange={handleDescription} style={{ margin: '10px' }} label="Description" />
+                    <Input onChange={handleImage} type='file' style={{ margin: '10px' }} id="imageInput" label="Court Image" />
+                    <Button style={{ margin: '10px' }} onClick={handleSubmit} variant="contained">Save</Button>
+                </form>
+            </Container>
+        </div>
         // <div>here we are!</div>
     );
 }

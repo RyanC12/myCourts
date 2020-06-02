@@ -52,6 +52,7 @@ const SelectedBusiness = ({ image }) => {
 
     const handleOpen = () => {
         setIsOpen(true);
+        geocode()
     };
 
     const handleClose = () => {
@@ -74,22 +75,12 @@ const SelectedBusiness = ({ image }) => {
             })
             .catch(error => console.log(error))
     }
-    geocode()
-    console.log({lat})
-    console.log({lng})
+
 
     return (
         <div>
             <a href="#">
                 <img onClick={handleOpen} className={classes.thumbnail} src={image.img} alt={image.name} />
-                { lat && lng ? 
-                                    <Map 
-                                    lat={lat}
-                                    lng={lng} 
-                                    />
-                                    :
-                                    null
-                }
             </a>
             <Modal
                 open={isOpen}
@@ -97,6 +88,14 @@ const SelectedBusiness = ({ image }) => {
             >
                 <div style={modalStyle} className={classes.paper}>
                     <img onClick={handleOpen} className={classes.courtPreview} src={image.img} alt={image.name} />
+                    { lat && lng ? 
+                                    <Map 
+                                    lat={lat}
+                                    lng={lng} 
+                                    />
+                                    :
+                                    null
+                }
                 </div>
             </Modal>
         </div>

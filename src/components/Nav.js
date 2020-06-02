@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Button, IconButton } from '@material-ui/core';
 import { BrowserRouter, Link } from 'react-router-dom';
 // import MenuIcon from '@material-ui/icons/Menu';
@@ -42,7 +42,7 @@ export default function ButtonAppBar() {
           <Link to="add" style={{ textDecoration: 'none', marginRight: '20px', padding: '0' }} >
             <Button className={classes.addButton}>Add Court</Button>
           </Link>
-          <Link to="find" style={{ textDecoration: 'none', margin: '0', padding: '0' }} >
+          <Link to="find" style={{ textDecoration: 'none', padding: '0' }} >
             <Button className={classes.addButton}>Find Court</Button>
           </Link>
         </Toolbar>

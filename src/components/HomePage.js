@@ -2,7 +2,7 @@ import React from 'react';
 
 import LeftHalf from '../images/leftSide.svg';
 import RightHalf from '../images/rightSide.svg';
-import WelcomeImage from '../images/fullHomePage.svg';
+import WelcomeImage from '../images/newFullCourtImg.svg';
 
 const HomePage = () => {
     return(

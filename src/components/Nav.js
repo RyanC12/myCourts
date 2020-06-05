@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 import { BrowserRouter, Link } from 'react-router-dom';
 // import MenuIcon from '@material-ui/icons/Menu';
 
@@ -30,14 +31,26 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ButtonAppBar() {
-  const classes = useStyles();
 
-  return (
-    <div className={classes.root}>
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const classes = useStyles();
+  let displayNav = null
+
+  if (window.screen.width > 450) {
+    displayNav = (<div className={classes.root}>
       <AppBar position="static">
         <Toolbar style={{ backgroundColor: '#3f4142' }}>
           <Typography variant="h6" className={classes.title}>
-            {/* myCourts */}
+            myCourts
           </Typography>
           <Link to="add" style={{ textDecoration: 'none', marginRight: '20px', padding: '0' }} >
             <Button className={classes.addButton}>Add Court</Button>
@@ -47,6 +60,16 @@ export default function ButtonAppBar() {
           </Link>
         </Toolbar>
       </AppBar>
-    </div>
-  );
+    </div>)
+  } else {
+    displayNav =
+      (<AppBar position="static">
+        <Toolbar style={{ backgroundColor: '#3f4142' }}>
+          <IconButton style={{ marginLeft: '90%' }} edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>)
+  }
+  return displayNav
 }

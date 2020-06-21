@@ -65,9 +65,23 @@ export default function ButtonAppBar() {
     displayNav =
       (<AppBar position="static">
         <Toolbar style={{ backgroundColor: '#3f4142' }}>
-          <IconButton style={{ marginLeft: '90%' }} edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
+          {/* <IconButton style={{ marginLeft: '90%' }} edge="end" className={classes.menuButton} color="inherit" aria-label="menu" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+          </IconButton> */}
+          <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} style={{ marginLeft: '80%' }} edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
+            Menu
+</Button>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem component={Link} to="/" onClick={handleClose}>Home</MenuItem>
+            <MenuItem component={Link} to="add" onClick={handleClose}>Add Court</MenuItem>
+            <MenuItem component={Link} to="find" onClick={handleClose}>Find Court</MenuItem>
+          </Menu>
+
         </Toolbar>
       </AppBar>)
   }

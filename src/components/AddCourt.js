@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
 import { Button, Container } from '@material-ui/core/';
+
+import ButtonAppBar from './Nav'
 
 import Map from '../components/Map';
 
@@ -14,6 +17,9 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        padding: '0',
+        backgroundColor: '#303132',
+        height: '100vh'
     },
     formContainer: {
         display: 'flex',
@@ -21,7 +27,13 @@ const useStyles = makeStyles(theme => ({
         width: '50%',
         margin: 'auto',
         padding: '20px',
-        border: '1px solid black'
+        border: '1px solid black',
+        borderRadius: '5px',
+        backgroundColor: '#edebeb'
+    },
+    addCourtTitle: {
+        textAlign: 'center',
+        color: '#edebeb'
     },
     mapPreview: {
         border: '1px solid black',
@@ -68,6 +80,8 @@ const AddCourt = ({ images, addCourt }) => {
         [newBusinessAddress]
     )
 
+    // function for encoding images submitted by user
+
     const handleName = (e) => {
         setNewBusinessName(e.target.value)
     };
@@ -102,7 +116,6 @@ const AddCourt = ({ images, addCourt }) => {
             newImage
         }]
         setLocations(location)
-
     }
 
     return (

@@ -10,6 +10,8 @@ import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
     contianer: {
+        display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -21,6 +23,12 @@ const useStyles = makeStyles(theme => ({
         padding: '20px',
         border: '1px solid black'
     },
+    mapPreview: {
+        border: '1px solid black',
+        width: '50%',
+        margin: 'auto',
+        padding: '20px'
+    }
 
 }));
 
@@ -98,7 +106,7 @@ const AddCourt = ({ images, addCourt }) => {
     }
 
     return (
-        <Container className={classes.container} style={{ display: 'flex' }} >
+        <Container className={classes.container} >
             <h1 style={{ textAlign: 'center' }}>Add Court</h1>
             <form className={classes.formContainer} >
                 <TextField onChange={handleName} style={{ margin: '10px' }} id="standard-basic" label="Name" />
@@ -110,8 +118,17 @@ const AddCourt = ({ images, addCourt }) => {
                 <TextField onChange={handleImage} type='file' style={{ margin: '10px' }} id="standard-basic" label="Court Image" />
                 <Button style={{ margin: '10px' }} onClick={handleSubmit} variant="contained">Save</Button>
             </form>
+            {newBusinessAddress ? 
+                <div className={classes.mapPreview}>
+                <Map
+                lat={lat}
+                lng={lng}
+                />
+                </div>
+                :
+                null
+            }
         </Container>
-        // <div>here we are!</div>
     );
 }
 

@@ -5,8 +5,9 @@ import balcones from '../images/Balcones.jpg';
 import mule from '../images/mule.png';
 import northwest from '../images/northwest.png';
 import SelectedCourt from '../components/SelectedCourt';
+import ButtonAppBar from './Nav'
 
-import { Typography, Container } from '@material-ui/core';
+import { Typography, Container, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -65,30 +66,33 @@ const Courts = () => {
     const classes = useStyles();
 
     return (
-        <div className={classes.courtContainer}>
-            <div className={classes.titles}>
+        <React.Fragment>
+            <ButtonAppBar />
+            <div className={classes.courtContainer}>
+                <div className={classes.titles}>
                     <h2>Name</h2>
                     <h2>Address</h2>
                     <h2>Preview</h2>
-            </div>
-            <div className={classes.courtInfoContainer}>
-                {
-                    images.map((image, i) => {
-                        return (
-                            <div key={i} className={classes.courts}>
-                                <p className="legend"><b>{image.name}</b></p>
-                                <p>{image.address}</p>
-                                <SelectedCourt
-                                image={image}
-                                >
-                                </SelectedCourt>
+                </div>
+                <div className={classes.courtInfoContainer}>
+                    {
+                        images.map((image, i) => {
+                            return (
+                                <div key={i} className={classes.courts}>
+                                    <p className="legend"><b>{image.name}</b></p>
+                                    <p>{image.address}</p>
+                                    <SelectedCourt
+                                        image={image}
+                                    >
+                                    </SelectedCourt>
 
-                            </div>
-                        )
-                    })
-                }
-            </div>    
-        </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+        </React.Fragment>
     )
 }
 

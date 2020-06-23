@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 
-import axios from 'axios'
-
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-
-import Map from './Map';
 
 
 function getModalStyle() {
@@ -38,16 +34,12 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const SelectedBusiness = ({ image }) => {
-    console.log({image})
+const SelectedCourt = ({ image }) => {
     const classes = useStyles();
     // getModalStyle is not a pure function, we roll the style only on the first render
     const [modalStyle] = React.useState(getModalStyle);
-
+    
     const [isOpen, setIsOpen] = useState(false)
-    // const [lat, setLat] = useState();
-    // const [lng, setLng] = useState();
-
 
     const handleOpen = () => {
         setIsOpen(true);
@@ -57,21 +49,6 @@ const SelectedBusiness = ({ image }) => {
         setIsOpen(false);
     };
 
-    // const geocode = () => {
-    //     axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
-    //         params: {
-    //             address: image.address,
-    //             key: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
-    //         }
-    //     })
-    //         .then(response => {
-    //             setLat(response.data.results[0].geometry.location.lat || null)
-    //             setLng(response.data.results[0].geometry.location.lng || null)
-
-    //         })
-    //         .catch(error => console.log(error))
-    // }
-    // geocode()
     return (
         <div>
             <a href="#">
@@ -89,4 +66,4 @@ const SelectedBusiness = ({ image }) => {
     );
 }
 
-export default SelectedBusiness;
+export default SelectedCourt;

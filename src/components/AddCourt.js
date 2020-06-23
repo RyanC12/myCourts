@@ -12,15 +12,14 @@ import Map from '../components/Map';
 import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        backgroundColor: '#303132',
-        height: '100vh'
-    },
-    conatainer: {
+    contianer: {
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '0'
+        padding: '0',
+        backgroundColor: '#303132',
+        height: '100vh'
     },
     formContainer: {
         display: 'flex',
@@ -36,6 +35,12 @@ const useStyles = makeStyles(theme => ({
         textAlign: 'center',
         color: '#edebeb'
     },
+    mapPreview: {
+        border: '1px solid black',
+        width: '50%',
+        margin: 'auto',
+        padding: '20px'
+    }
 
 }));
 
@@ -114,23 +119,29 @@ const AddCourt = ({ images, addCourt }) => {
     }
 
     return (
-        <div className={classes.root}>
-            <ButtonAppBar />
-            <Container className={classes.container} >
-                <h1 className={classes.addCourtTitle}>Add Court</h1>
-                <form className={classes.formContainer} >
-                    <TextField onChange={handleName} style={{ margin: '10px' }} label="Name" />
-                    <TextField onBlur={handleAddress} style={{ margin: '10px' }} label="Address" />
-                    <TextField onChange={handleCity} style={{ margin: '10px' }} label="city,st" />
-                    <TextField onChange={handleZipcode} style={{ margin: '10px' }} label="zipcode" />
-                    <TextField onChange={handleHours} style={{ margin: '10px' }} label="Hours" />
-                    <TextField onChange={handleDescription} style={{ margin: '10px' }} label="Description" />
-                    <Input onChange={handleImage} type='file' style={{ margin: '10px' }} id="imageInput" label="Court Image" />
-                    <Button style={{ margin: '10px' }} onClick={handleSubmit} variant="contained">Save</Button>
-                </form>
-            </Container>
-        </div>
-        // <div>here we are!</div>
+        <Container className={classes.container} >
+            <h1 style={{ textAlign: 'center' }}>Add Court</h1>
+            <form className={classes.formContainer} >
+                <TextField onChange={handleName} style={{ margin: '10px' }} id="standard-basic" label="Name" />
+                <TextField onBlur={handleAddress} style={{ margin: '10px' }} id="standard-basic" label="Address" />
+                <TextField onChange={handleCity} style={{ margin: '10px' }} id="standard-basic" label="city,st" />
+                <TextField onChange={handleZipcode} style={{ margin: '10px' }} id="standard-basic" label="zipcode" />
+                <TextField onChange={handleHours} style={{ margin: '10px' }} id="standard-basic" label="Hours" />
+                <TextField onChange={handleDescription} style={{ margin: '10px' }} id="standard-basic" label="Description" />
+                <TextField onChange={handleImage} type='file' style={{ margin: '10px' }} id="standard-basic" label="Court Image" />
+                <Button style={{ margin: '10px' }} onClick={handleSubmit} variant="contained">Save</Button>
+            </form>
+            {newBusinessAddress ? 
+                <div className={classes.mapPreview}>
+                <Map
+                lat={lat}
+                lng={lng}
+                />
+                </div>
+                :
+                null
+            }
+        </Container>
     );
 }
 

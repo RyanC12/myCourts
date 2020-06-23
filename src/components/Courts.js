@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { Carousel } from 'react-responsive-carousel';
 import balcones from '../images/Balcones.jpg';
 import mule from '../images/mule.png';
 import northwest from '../images/northwest.png';
 import SelectedCourt from '../components/SelectedCourt';
+import SelectedAddress from '../components/SelectedAddress';
+
 
 import { Typography, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -61,6 +62,7 @@ const images = [
     }
 ];
 
+
 const Courts = () => {
     const classes = useStyles();
 
@@ -77,7 +79,10 @@ const Courts = () => {
                         return (
                             <div key={i} className={classes.courts}>
                                 <p className="legend"><b>{image.name}</b></p>
-                                <p>{image.address}</p>
+                                <SelectedAddress
+                                address={image.address}
+                                >
+                                </SelectedAddress>
                                 <SelectedCourt
                                 image={image}
                                 >
